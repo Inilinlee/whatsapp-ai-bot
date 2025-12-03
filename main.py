@@ -48,3 +48,7 @@ async def analyze(req: Request):
     )
     
     return json.loads(resp.choices[0].message.content)
+@app.get("/health")
+async def health():
+    prices = load_prices()
+    return {"prices_loaded": len(prices) > 0}
